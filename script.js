@@ -1,37 +1,19 @@
+let a = '12.2';
+let b = '35';
+let c = '90';
 
-
-
-function myFn(dollar, rubles) {
-  return dollar >= rubles;
+function myFn (a, b, c,) {
+   if(value = Number) {
+      
+   } 
+   
+   else {
+      a = +a;
+      b = +b;
+      c = +c;
+      console.log(typeof a)
+   } 
+   
+   return a * b * c;
 }
-console.log(myFn(10, 10))
-
-function myFn2() {
-  let a = 100;
-  let b = 52;
-  return a + b
-}
-console.log(myFn2())
-
-
-function dollarConvert(dollar, euro) {
-  
-  return dollar * euro;
-}
-let result = dollarConvert(10, 5)
-console.log(result + ' Dollar')
-
-
-
-
-//const dollarInEuro = 0.99;
-//const rublesInDollar = 60;
-
-//function exchangeRate(euro, rubles) {
- 
-//  let euroResult = euro * dollarInEuro;
-//  let rublesResult = rubles * rublesInDollar;
-//  console.log(euroResult > rublesResult);   
-//  return `${euroResult} Euro\n${rublesResult} Rubles`;
-//}
-//console.log(exchangeRate(100, 100))
+console.log(myFn(a, b, c))
