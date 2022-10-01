@@ -1,11 +1,13 @@
 let a = '12.4';
-let b = 36;
+let b = "36";
 let c = '90';
 
 function myFn (a, b, c,) {
    if (a == Number,
       b == Number,
-      c == Number);
+      c == Number
+      );
+      
        else  ( 
          a == String,
          b == String,
@@ -14,7 +16,7 @@ function myFn (a, b, c,) {
          a = +a;
          b = +b;
          c = +c;
-         console.log( typeof a)
+         console.log( typeof b + ' Proverka preobrazovanyje tipov')
         }
    
    return a * b * c;
