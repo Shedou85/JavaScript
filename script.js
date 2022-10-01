@@ -6,7 +6,9 @@ function myFn (a, b, c,) {
    if (a == Number);
       {
       console.log(typeof a);
-   } else
+   } else {
+      a = +a;
+   }
    
    return a * b * c;
 }
