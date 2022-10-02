@@ -38,5 +38,5 @@ function minFn(a, b) {
  return a < b ? a : b
  }
  
-minFn();
-console.log(minFn(a, b));
+let result = minFn(a, b);
+console.log(result);
