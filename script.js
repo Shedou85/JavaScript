@@ -30,13 +30,39 @@
 //Переменную выведи в консоль )
 
 
-let a = 5;
-let b = -3;
+//let a = 5;
+//let b = -3;
 
 
-function minFn(a, b) { 
- return a < b ? a : b
- }
+//function minFn(a, b) { 
+// return a < b ? a : b
+// }
  
-let result = minFn(a, b);
-console.log(result);
+//let result = minFn(a, b);
+//console.log(result);
+
+// 1. Создать массив разных примитивов
+// 2. Пройтись по массиву циклом for
+// 3. Напишите функцию которая будет принимать 1 параметр, и выводить в консоль Тип этого параметра, 
+//    так же будет записывать в пустой массив этот параметр если он положительный. Эту функцию используйте в теле цикла.
+// 4. После выполнения цикла выведите в консоль количество положительных элементов в созданном массиве. 
+
+
+let arr = [1, 2, 3, 'BMW', 'Audi', true, undefined, false, 0, '123', '0'];
+let newArr = [];
+
+for (let i = 0; i < arr.length; i++) {
+
+   function myFn(arr) {
+      
+      if (arr[i]) {
+         console.log(typeof arr[4])
+         newArr.push(arr[4])
+      }
+      
+      return newArr;
+   }
+   
+   }
+myFn(arr)
+console.log(newArr)
