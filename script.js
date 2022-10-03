@@ -60,9 +60,9 @@ for (let i = 0; i < arr.length; i++) {
          newArr.push(arr[4])
       }
       
-      return newArr;
+   return newArr;
    }
    
-   }
+}
 myFn(arr)
 console.log(newArr)
