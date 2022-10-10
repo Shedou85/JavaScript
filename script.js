@@ -1,4 +1,24 @@
+// Navigation
 
+let meniulink = document.querySelector('.meniu').children;
+
+for (let i = 0; i < meniulink.length; i++) {
+   meniulink[i].addEventListener('click', function() {
+      if (meniulink[i].classList.contains('active')) {
+         return
+      } else {
+         for (let i = 0; i < meniulink.length; i++) {
+            meniulink[i].classList.remove('active')
+         }
+         meniulink[i].classList.add('active')
+      }
+   }) 
+}
+
+
+
+
+// Card's Array
 let arr = [
    {
       imgSrc: "./img/flower1.webp",
@@ -64,8 +84,36 @@ let arr = [
       price: "$35.99"
    }
 ];
+let arr1 = [
+   {
+      imgSrc: "./img/smile.jpg",
+      flowerName: "arr1",
+      description: "Arr1",
+      flowerClass: "Arr1",
+      price: "Arr1"
+   }
+];
+let arr2 = [
+   {
+      imgSrc: "./img/smile2.jpg",
+      flowerName: "Arr2",
+      description: "Arr2",
+      flowerClass: "Arr2",
+      price: "Arr2"
+   }
+];
+let arr3 = [
+   {
+      imgSrc: "./img/smile3.png",
+      flowerName: "Arr3",
+      description: "Arr3",
+      flowerClass: "Arr3",
+      price: "Arr3"
+   }
+]
 
 
+// Creating card's
 let card_wrapper = document.querySelector('.card_wrapper');
 
 function createCard(parent, cardObject) {
@@ -93,7 +141,7 @@ function createCard(parent, cardObject) {
          <p>${cardObject.price}</p>
       </div>
 
-      <div class="button">
+      <div class="button_div">
          <div class="btn_buy">Buy Now</div>
       </div>
       </div>
@@ -103,6 +151,31 @@ function createCard(parent, cardObject) {
 }
 
 arr.forEach(function(card) {
-   
    createCard(card_wrapper, card)
 })
+
+
+// Button to add card from diferent array
+
+let button = document.querySelector('.addCardArr1');
+let button2 = document.querySelector('.addCardArr2');
+let button3 = document.querySelector('.addCardArr3');
+
+button.addEventListener('click', function () {
+   arr1.forEach(function(card) {
+      createCard(card_wrapper, card);
+   })
+   }
+   );
+button2.addEventListener('click', function() {
+   arr2.forEach(function(card) {
+      createCard(card_wrapper, card);
+   })
+})
+button3.addEventListener('click', function() {
+   arr3.forEach(function(card) {
+      createCard(card_wrapper, card)
+   })
+})
+  
+
