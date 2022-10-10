@@ -165,17 +165,16 @@ button.addEventListener('click', function () {
    arr1.forEach(function(card) {
       createCard(card_wrapper, card);
    })
-   }
-   );
+});
 button2.addEventListener('click', function() {
    arr2.forEach(function(card) {
       createCard(card_wrapper, card);
    })
-})
+});
 button3.addEventListener('click', function() {
    arr3.forEach(function(card) {
       createCard(card_wrapper, card)
    })
-})
+});
   
 
