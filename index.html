@@ -6,19 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&display=swap" rel="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
   <title>JavaScript</title>
 </head>
 <body>
 <header>
-  <div class="nav">
-    <div class="nav-bar">
-      <ul class="meniu">
-        <li>Home</li>
-        <li>About Us</li>
-        <li>Contac</li>
-      </ul>
+  <div class="container">
+    <div class="border">
+      <div class="gradient_text">
+        <h1>JavaScript Home Work From : <span>Marius Dainys</span></h1>
+      </div>
     </div>
   </div>
 </header>
@@ -26,31 +25,35 @@
 <main>
 
   <div class="container">
-
-    <div class="title">
-      <h1>New York City Flower Delivery</h1>
-    </div>
-    
-    <div class="card_wrapper">
+    <div class="border">
+      <p class="workout">Work Out Nr. 1 :</p>
+      <p>Создайте поле ввода INPUT и кнопку SAVE.
+        При нажатии на SAVE функция возьмет значение из INPUT и запишет его в localStorage c ключём “input”.
+        При загрузке страницы напишите скрипт который будет присваивать нашему полю ввода INPUT значение из 
+        localStorage по ключу “input”.
+      </p>
       
+      <div class="border_item">
+        <input type="text" class="input" placeholder="Enter Your Name" name="myinput" id="inputid" maxlength="10">
+        <div class="btn">
+          <p>Save</p>
+        </div>
+      </div>
     </div>
-    <div class="btn_arr1">
-      <div class="addCardArr1">Add Card From Arr1</div>
-      <!--<div class="removeCard">Remove Card Arr1</div>-->
-
-    </div>
-    <div class="btn_arr2">
-      <div class="addCardArr2">Add Card From Arr2</div>
-      <!--<div class="removeCard">Remove Card Arr1</div>-->
-
-    </div>
-    <div class="btn_arr3">
-      <div class="addCardArr3">Add Card From Arr3</div>
-      <!--<div class="removeCard">Remove Card Arr1</div>-->
+    <div class="border">
+      <p class="workout">Work Out Nr. 2 :</p>
+      <p>Напишите таймер, или просто отсчётчик, который будет прибавлять +1 каждую секунду. 
+        Если Вы закроете вкладку, но потом вернётесь снова - он продолжит счётчик дальше.
+      </p>
+      <div class="border_item">
+        <div class="timer">
+          <div class="timer_item">Timer :</div>
+          <div class="sec" id="sekunde">00</div>
+        </div>
+      </div>
 
     </div>
   </div>
-
 </main>
 
 <footer>
@@ -59,6 +62,6 @@
 </footer>
 
   
-  <script src="./script.js"></script>
+  <script type="module" src="./script.js"></script>
 </body>
 </html>
