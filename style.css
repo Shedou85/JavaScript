@@ -78,7 +78,22 @@ main {
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-wrap: wrap;
+   gap: 20px;
 }
+.work3 {
+   /*margin-top: 50px;
+   margin-bottom: 30px;*/
+   padding: 30px 10px 20px 10px;
+}
+@media screen and (max-width: 800px) {
+   .border_item {
+      flex-direction: column;
+   }
+   .work3 {
+      height: 200px;
+   }
+   }
 
 .workout {
    color: rgb(156, 5, 5);
@@ -100,6 +115,10 @@ main {
    background-color: #9AE19D;
    color: #2C302E;
 }
+#save_btn {
+   width: 100px;
+   margin-right: 20px;
+}
 .timer_item {
    color: rgb(156, 5, 5);
 }
@@ -107,7 +126,9 @@ main {
    width: 300px;
    display: flex;
    justify-content: center;
-   border: #537A5A solid
+   border: #537A5A solid;
+   border-radius: 8px;
+   padding: 10px;
 }
 .timer_min {
    width: 200px;

@@ -44,24 +44,35 @@ document.getElementById('sekunde').innerHTML = localStorage.getItem('Taimer')
 
 let minutes = document.getElementById('min2');
 let sekundes = document.getElementById('sec2')
+let start  = document.getElementById('save_btn')
+let reset = document.getElementById('reset_btn')
 
 let timerMin = 0;
 let timerSec = 0;
 
-setInterval(() => {
-   timerMin++
-   minutes.innerHTML = timerMin;
-}, 60000)
-document.getElementById('min2').innerHTML = timerMin;
+start.addEventListener('click', function() {
+   setInterval(() => {
+      timerMin++
+      minutes.innerHTML = timerMin;
+      if (timerMin >= 60) {
+         timerMin = 0;
+      }
+   }, 60000);
+   setInterval(() => {
+      timerSec++
+      sekundes.innerHTML = timerSec;
+      if (timerSec >= 60) {
+         timerSec = 0;
+      }
+   }, 1000);
+})
 
-setInterval(() => {
-   timerSec++
-   sekundes.innerHTML = timerSec;
-   if (timerSec >= 60) {
-      timerSec = 0;
-      //clearInterval(sekundes);
-   }
-}, 1000)
+reset.addEventListener('click', function() {
+   timerMin = 0;
+   timerSec = 0;
+})
+
+document.getElementById('min2').innerHTML = timerMin;
 document.getElementById('sec2').innerHTML = timerSec;
 
 
