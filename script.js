@@ -57,6 +57,10 @@ document.getElementById('min2').innerHTML = timerMin;
 setInterval(() => {
    timerSec++
    sekundes.innerHTML = timerSec;
+   if (timerSec >= 60) {
+      timerSec = 0;
+      //clearInterval(sekundes);
+   }
 }, 1000)
 document.getElementById('sec2').innerHTML = timerSec;
 
