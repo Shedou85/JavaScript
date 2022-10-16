@@ -49,7 +49,11 @@ main {
    align-items: center;
    margin-top: 20px;
 }
-
+@media screen and (max-width: 800px) {
+   .container {
+      width: 400px;
+   }
+   }
 
  .gradient_text {
    background-image: linear-gradient(90deg, rgb(243, 220, 10), green);
@@ -59,13 +63,12 @@ main {
    font-size: 48px;
    display: flex;
    justify-content: center;
-   width: 600px;
 }
 
 .border {
    border: solid 3px #474A48;
    border-radius: 8px;
-   width: 900px;
+   max-width: 600px;
    padding: 20px;
    margin-bottom: 30px;
 }
@@ -80,6 +83,7 @@ main {
 .workout {
    color: rgb(156, 5, 5);
    margin-bottom: 10px;
+   width: 100%;
 }
 
 .input {
