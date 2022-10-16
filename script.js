@@ -25,14 +25,17 @@ let timer = document.querySelector('timer');
 let sec = document.getElementById('sekunde')
 
 let timer1 = new Date;
+let timerValue = sec.value;
 
 setInterval(() => {
+   let timerValue = timer1.value;
    timer1 ++
    sec.innerHTML = new Date;
+
 }, 1000)
 
 localStorage.setItem('Data', timer1);
-document.getElementById('sekunde').innerHTML = localStorage.getItem('timer1')
+document.getElementById('timer1').value = localStorage.getItem('timer1')
 console.log(localStorage)
 
 // Varijant s cifroj -----> Ne poluchajetsa 
@@ -45,19 +48,12 @@ console.log(localStorage)
 //setInterval(() => {
 //   timer1++
 //   sec.innerHTML = timer1;
-   
+//   localStorage.setItem('Data', timer1);
 //}, 1000)
 
-//localStorage.setItem('Data', timer1);
-//document.getElementById('sekunde').innerHTML = localStorage.getItem(timer1)
+
+//document.getElementById('sekunde').innerHTML = localStorage.getItem('Data')
 //console.log(localStorage)
-
-
-
-
-
-
-
 
 
 
