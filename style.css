@@ -103,6 +103,22 @@ main {
 .timer_item {
    color: rgb(156, 5, 5);
 }
+.timer2 {
+   width: 300px;
+   display: flex;
+   justify-content: center;
+   border: #537A5A solid
+}
+.timer_min {
+   width: 200px;
+   display: flex;
+   justify-content: space-around;
+}
+.timer_sec {
+   width: 200px;
+   display: flex;
+   justify-content: space-around;
+}
 .sec {
    display: flex;
    justify-content: center;

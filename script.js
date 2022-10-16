@@ -25,6 +25,7 @@ let sec = document.getElementById('sekunde')
 let timer1 = 0;
 sec.innerHTML = timer1;
 
+
 setInterval(() => {
    timer1++
    sec.innerHTML = timer1;
@@ -33,44 +34,31 @@ setInterval(() => {
 
 
 console.log(localStorage)
-let result = localStorage.getItem('Taimer')
-console.log(result)
+timer1 = localStorage.getItem('Taimer')
+
 document.getElementById('sekunde').innerHTML = localStorage.getItem('Taimer')
 
 
-
-//setInterval(() => {
-   
-//   timer1++
-//   sec.innerHTML = new Date;
-
-//}, 1000)
-
-//localStorage.setItem('Data', timer1);
-////document.getElementById('timer1') = localStorage.getItem('timer1')
-//console.log(localStorage)
-
-// Varijant s cifroj -----> Ne poluchajetsa 
-
-//let timer = document.querySelector('timer');
-//let sec = document.getElementById('sekunde')
-
-//let timer1 = 0;
-
-//setInterval(() => {
-//   timer1++
-//   sec.innerHTML = timer1;
-//   localStorage.setItem('Data', timer1);
-//}, 1000)
+// Work Out Nr. 3 :
 
 
-//document.getElementById('sekunde').innerHTML = localStorage.getItem('Data')
-//console.log(localStorage)
+let minutes = document.getElementById('min2');
+let sekundes = document.getElementById('sec2')
 
+let timerMin = 0;
+let timerSec = 0;
 
+setInterval(() => {
+   timerMin++
+   minutes.innerHTML = timerMin;
+}, 60000)
+document.getElementById('min2').innerHTML = timerMin;
 
-
-
+setInterval(() => {
+   timerSec++
+   sekundes.innerHTML = timerSec;
+}, 1000)
+document.getElementById('sec2').innerHTML = timerSec;
 
 
 
