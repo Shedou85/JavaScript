@@ -109,7 +109,7 @@ main {
    border-radius: 8px;
    padding-left: 5px;
    background-color: #537A5A;
-   color: #FFE7E7;
+   color: #000000;
 }
 .input:active {
    border: #537A5A solid 2px;
