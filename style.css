@@ -127,7 +127,7 @@ main {
    display: flex;
    justify-content: center;
    align-items: center;
-   border: #537A5A solid;
+   border: #537A5A solid 2px;
    border-radius: 8px;
    padding: 10px;
 }
@@ -147,6 +147,6 @@ main {
    align-items: center;
    width: 100%;
    height: 50px;
-   border: #9AE19D solid 2px;
+   border: #537A5A solid 2px;
    border-radius: 8px;
 }
