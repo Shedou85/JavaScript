@@ -105,6 +105,14 @@ main {
 .input {
    height: 30px;
    margin-right: 20px;
+   border: #537A5A solid 2px;
+   border-radius: 8px;
+   padding-left: 5px;
+   background-color: #537A5A;
+   color: #FFE7E7;
+}
+.input:active {
+   border: #537A5A solid 2px;
 }
 .btn {
    background-color: #537A5A;
