@@ -81,6 +81,7 @@ main {
    flex-wrap: wrap;
    gap: 20px;
 }
+
 .work3 {
    /*margin-top: 50px;
    margin-bottom: 30px;*/
@@ -117,7 +118,6 @@ main {
 }
 #save_btn {
    width: 100px;
-   margin-right: 20px;
 }
 .timer_item {
    color: rgb(156, 5, 5);
@@ -126,6 +126,7 @@ main {
    width: 300px;
    display: flex;
    justify-content: center;
+   align-items: center;
    border: #537A5A solid;
    border-radius: 8px;
    padding: 10px;
