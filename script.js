@@ -76,4 +76,20 @@ document.getElementById('min2').innerHTML = timerMin;
 document.getElementById('sec2').innerHTML = timerSec;
 
 
+// Navigation
 
+
+let navbar = document.querySelectorAll('.meniulink');
+
+for (let i = 0; i < navbar.length; i++) {
+   navbar[i].addEventListener('click', function() {
+      if (navbar[i].classList.contains('active')) {
+         return
+      } else {
+         for (let i = 0; i < navbar.length; i++) {
+            navbar[i].classList.remove('active')
+         }
+         navbar[i].classList.add('active')
+      }
+   })
+}

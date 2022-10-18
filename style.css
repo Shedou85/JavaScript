@@ -14,8 +14,9 @@ a {
    color: beige;
 }
 a:hover {
-   color: #537A5A;
+   color: #9AE19D;
 }
+
 ul,
 ol,
 li {
@@ -41,6 +42,10 @@ body {
    padding-top: 20px;
 }
 
+.active a {
+   color: #9AE19D;
+}
+
 .navbar {
    position: fixed;
    
@@ -53,7 +58,12 @@ nav ul{
    /*gap: 40px;*/
    font-size: 38px;
 }
-
+@media screen and (max-width: 800px) {
+   nav ul {
+      width: 400px;
+      font-size: 25px;
+   }
+}
 
 /* Main Content */
 .container {
@@ -68,7 +78,7 @@ nav ul{
    .container {
       width: 400px;
    }
-   }
+}
 
 
  .gradient_text {
