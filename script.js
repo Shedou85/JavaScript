@@ -1,0 +1,62 @@
+let url = 'https://635d0154cb6cf98e56aa96bd.mockapi.io/productCards'
+let wrapper  = document.querySelector(".cards-list");
+let producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"];
+
+function render(data, wrapper) {
+  let card = document.createElement("div");
+    card.classList.add("product-card");
+    card.innerHTML = `
+    <div class="product-image">
+      <img src="${data.image}" alt="img">
+    </div>
+    <div class="card__info">
+      <div class="product-name">
+        ${data.description}
+      </div>
+      <div class="product-specs">
+        <div class="spec-line">
+          <div class="label">Atmintinė: </div>
+          <div class="value">${data.specs.ram}GB</div>
+        </div>
+        <div class="spec-line">
+          <div class="label">Ekrano įstrižainė: </div>
+          <div class="value">${data.specs.screenSizeText}</div>
+        </div>
+        <div class="spec-line">
+          <div class="label">SSD: </div>
+          <span> </span>
+          <div class="value"> ${data.specs.ssd}</div>
+        </div>
+      </div>
+      <div class="product-price">
+        <p>${data.price} €</p>
+      </div>
+      <div class="product-action-block">
+        <div class="to-cart-button">
+        <img src="https://www.topocentras.lt/140fe2aeea6055f5fc2782fbc940be96.svg" alt="cart">
+        <span>Į krepšelį</span>
+      </div>
+      <div class="favourite-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>                  
+      </div>
+      </div>
+    </div>
+    `;
+    wrapper.append(card);
+}
+
+async function cardApi() {
+  let res = await fetch(url);
+  let dataResp = await res.json()
+  let data = dataResp[0].data
+  console.log(dataResp);
+  console.log(data);
+  data.forEach(data => {
+    render(data, wrapper);
+  });
+}
+cardApi();  
+
+
+
+
