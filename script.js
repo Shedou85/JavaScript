@@ -2,7 +2,7 @@ let url = 'https://635d0154cb6cf98e56aa96bd.mockapi.io/productCards'
 let wrapper  = document.querySelector(".cards-list");
 let producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"];
 let sortQuantity = document.querySelector('.sort-select');
-let nuolaida = document.querySelector('.discount-code');
+let nuolaida = document.querySelector('.product-card .discount-code');
 let eprice = document.querySelector('.e-price');
 let delivery = document.querySelector('.delivery-footer');
 
@@ -16,16 +16,21 @@ async function cardApi() {
   console.log(data);
   data.forEach(data => {
     render(data, wrapper);
-   if (data.discount === true) {
-    nuolaida.classList.add('show');
-  }
-   if (data.ePrice === true) {
-      eprice.classList.add('show');
-  }
-   if (data.delivery === true) {
-      delivery.classList.add('show');
-  }
+    
+    if (data.discount === true) {
+      console.log("yra nuolaida");
+      nuolaida.classList.add('show');
+    }
+     if (data.ePrice === true) {
+      console.log("yra e-kaina");
+        eprice.classList.add('show');
+    }
+     if (data.delivery === true) {
+      console.log("yra pristatymas");
+        delivery.classList.add('show');
+    }
   });
+  
 }
 cardApi();  
 //Render Function
@@ -88,3 +93,4 @@ function render(data, wrapper) {
     `;
     wrapper.append(card);
 }
+
