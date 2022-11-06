@@ -112,6 +112,94 @@ function filterByProcessorName(processors, originalData) {
   })
 }
 
+//sorting products by price and name
+let input = document.querySelector(".sort-select");
+input.addEventListener("input", (e) => {
+  //sort by name
+  if (e.target.value === "name") {
+    let sortedData = originalData.sort((a, b) => {
+      if (a.producer > b.producer) {
+        return 1;
+      } else if (a.producer < b.producer) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  //sort price by lover to higher
+  if (e.target.value === "price_asc") {
+    let sortedData = originalData.sort((a, b) => {
+      
+      if (a.price < b.price) {
+        return 1;
+      } else if (a.price > b.price) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  //sort price by higher to lover
+  if (e.target.value === "price_desc") {
+    let sortedData = originalData.sort((a, b) => {
+      if (a.price > b.price) {
+        return 1;
+      } else if (a.price < b.price) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  
+});
+
+//sorting products by quantity on the page
+let input2 = document.querySelector(".sort-select2");
+input2.addEventListener("input", (e) => {
+  if (e.target.value === "5") {
+    let sortedData = originalData.slice(0, 5);
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  if (e.target.value === "10") {
+    let sortedData = originalData.slice(0, 10);
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  if (e.target.value === "15") {
+    let sortedData = originalData.slice(0, 15);
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  if (e.target.value === "20") {
+    let sortedData = originalData.slice(0, 20);
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  if (e.target.value === "30") {
+    let sortedData = originalData.slice(0, 30);
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  console.log(e.target.value);
+});
+
+
+
+
+
+
+
+
+
 
 
 
