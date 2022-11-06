@@ -115,50 +115,13 @@ function filterByProcessorName(processors, originalData) {
 //sorting products by price and name
 let input = document.querySelector(".sort-select");
 input.addEventListener("input", (e) => {
-  //sort by name
-  if (e.target.value === "name") {
-    let sortedData = originalData.sort((a, b) => {
-      if (a.producer > b.producer) {
-        return 1;
-      } else if (a.producer < b.producer) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-    wrapper.innerHTML = "";
-    render(sortedData, wrapper);
-  }
-  //sort price by lover to higher
+
+  //sort price from array by lover to higher
   if (e.target.value === "price_asc") {
-    let sortedData = originalData.sort((a, b) => {
-      
-      if (a.price < b.price) {
-        return 1;
-      } else if (a.price > b.price) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
+    let sortedData = originalData.sort((a, b) => a.price - b.price);
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
   }
-  //sort price by higher to lover
-  if (e.target.value === "price_desc") {
-    let sortedData = originalData.sort((a, b) => {
-      if (a.price > b.price) {
-        return 1;
-      } else if (a.price < b.price) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-    wrapper.innerHTML = "";
-    render(sortedData, wrapper);
-  }
-  
 });
 
 //sorting products by quantity on the page
