@@ -116,13 +116,24 @@ function filterByProcessorName(processors, originalData) {
 let input = document.querySelector(".sort-select");
 input.addEventListener("input", (e) => {
 
-  //sort price from array by lover to higher
+  //sort price  by lover to higher
   if (e.target.value === "price_asc") {
-    let sortedData = originalData.sort((a, b) => a.price - b.price);
+    let sortedData =[];
+     sortedData = originalData.sort((a, b) => {
+      if (a.price < b.price) {
+        return -1;
+      } else if (a.price > b.price) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
+    console.log(sortedData);
   }
 });
+
 
 //sorting products by quantity on the page
 let input2 = document.querySelector(".sort-select2");
