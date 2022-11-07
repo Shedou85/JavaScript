@@ -154,11 +154,10 @@ function filterBySsdSize(ssdSize, originalData) {
     let amount = 0;
     originalData.forEach(product => {
       if (product.specs.ssd === size) amount++
-      console.log(product.specs.ssd) //pochemu on tak bezobrazno shitajet?
-      
+
     })
     let el = document.querySelector(`[data-ssdSize="${size}"]`)
-    //console.log(el)
+    
     el.innerHTML = `(${amount})`;
   })
 }
