@@ -1,10 +1,11 @@
 let url = 'https://635d0154cb6cf98e56aa96bd.mockapi.io/productCards'
+let originalData;
+
 let wrapper  = document.querySelector(".cards-list");
 let producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"];
 let processorList = ["AMD", "Intel", "AppleM1", "AppleM2"];
 
 
-let originalData;
 
 //Products Api Fetch
 async function cardApi() {
@@ -20,6 +21,8 @@ async function cardApi() {
   filterByProcessorName(processorList, originalData);
 }
 cardApi();  
+
+
 
 //Render Function 
 function render(data, wrapper) { 
@@ -112,25 +115,34 @@ function filterByProcessorName(processors, originalData) {
   })
 }
 
+
+
 //sorting products by price and name
 let input = document.querySelector(".sort-select");
 input.addEventListener("input", (e) => {
 
   //sort price  by lover to higher
   if (e.target.value === "price_asc") {
-    let sortedData =[];
-     sortedData = originalData.sort((a, b) => {
-      if (a.price < b.price) {
-        return -1;
-      } else if (a.price > b.price) {
-        return 1;
-      } else {
-        return 0;
-      }
+    let sortedData = originalData.sort((a, b) => {
+      return  parseFloat(a.price) < parseFloat(b.price) ? -1 : 1;
     });
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
-    console.log(sortedData);
+  }
+  if (e.target.value === "price_desc") {
+    let sortedData = originalData.sort((a, b) => {
+      return  parseFloat(a.price) > parseFloat(b.price) ? -1 : 1;
+    });
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
+  }
+  //sort by name
+  if (e.target.value === "name") {
+    let sortedData = originalData.sort((description) => {
+      return  description
+    });
+    wrapper.innerHTML = "";
+    render(sortedData, wrapper);
   }
 });
 
