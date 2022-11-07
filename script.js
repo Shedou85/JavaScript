@@ -1,11 +1,15 @@
+
+// Url for Fetching data
 let url = 'https://635d0154cb6cf98e56aa96bd.mockapi.io/productCards'
 let originalData;
-
-let wrapper  = document.querySelector(".cards-list");
-let producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"];
-let processorList = ["AMD", "Intel", "AppleM1", "AppleM2"];
-
-
+//Render card
+const wrapper  = document.querySelector(".cards-list");
+//filters Options
+const producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"];
+const processorList = ["AMD", "Intel", "AppleM1", "AppleM2"];
+const screenSizeList = [13, 13.3, 14, 15.6, 16, 17.3];
+const ramSizeList = [4, 8, 16, 32, 64];
+let ssdSizeList = ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB"];
 
 //Products Api Fetch
 async function cardApi() {
@@ -15,10 +19,12 @@ async function cardApi() {
   console.log(data);
 
   originalData = data;
-
   render(data, wrapper);
-  countAmount(producerList, originalData);
+  filterByProducerName(producerList, originalData);
   filterByProcessorName(processorList, originalData);
+  filterByScreenSize(screenSizeList, originalData)
+  filterByRamSize(ramSizeList, originalData)
+  filterBySsdSize(ssdSizeList, originalData)
 }
 cardApi();  
 
@@ -87,7 +93,7 @@ function render(data, wrapper) {
 }
 
 //Count by amount of brands name
-function countAmount(filterList, originalData) {
+function filterByProducerName(filterList, originalData) {
   filterList.forEach(prod => {
     let amount = 0;
 
@@ -100,7 +106,7 @@ function countAmount(filterList, originalData) {
     el.innerHTML = `(${amount})`;
   })
 };
-//Count by processor's name
+//Count by amount of processor's name
 function filterByProcessorName(processors, originalData) {
   processors.forEach(proc => {
     let amount = 0;
@@ -114,6 +120,47 @@ function filterByProcessorName(processors, originalData) {
     el.innerHTML = `(${amount})`;
   })
 }
+
+//count amount by screen size
+function filterByScreenSize(screenSize, originalData) {
+  screenSize.forEach(size => {
+    let amount = 0;
+
+    originalData.forEach(product => {
+      if (product.specs.screenSizeValue === size) amount++
+      
+    })
+    let el = document.querySelector(`[data-screenSize="${size}"]`)
+    
+    el.innerHTML = `(${amount})`;
+  })
+}
+//count amount by ram size
+function filterByRamSize(ramSize, originalData) {
+  ramSize.forEach(size => {
+    let amount = 0;
+
+    originalData.forEach(product => {
+      if (product.specs.ram === size) amount++
+    })
+    let el = document.querySelector(`[data-ramSize="${size}"]`)
+
+    el.innerHTML = `(${amount})`;
+  })
+}
+//count amount by ssd size
+function filterBySsdSize(ssdSize, originalData) {
+  ssdSize.forEach(sizes => {
+    let amount = 0;
+    originalData.forEach(product => {
+      if (product.specs.ssd === sizes) amount++
+      
+    })
+    let el = document.querySelector(`[data-ssdSize="${sizes}"]`)
+    el.innerHTML = `(${amount})`;
+  })
+}
+
 
 
 
@@ -145,8 +192,6 @@ input.addEventListener("input", (e) => {
     render(sortedData, wrapper);
   }
 });
-
-
 //sorting products by quantity on the page
 let input2 = document.querySelector(".sort-select2");
 input2.addEventListener("input", (e) => {
