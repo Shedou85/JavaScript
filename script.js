@@ -20,11 +20,12 @@ async function cardApi() {
 
   originalData = data;
   render(data, wrapper);
+  
   filterByProducerName(producerList, originalData);
   filterByProcessorName(processorList, originalData);
-  filterByScreenSize(screenSizeList, originalData)
-  filterByRamSize(ramSizeList, originalData)
-  filterBySsdSize(ssdSizeList, originalData)
+  filterByScreenSize(screenSizeList, originalData);
+  filterByRamSize(ramSizeList, originalData);
+  filterBySsdSize(ssdSizeList, originalData);
 }
 cardApi();  
 
@@ -120,7 +121,6 @@ function filterByProcessorName(processors, originalData) {
     el.innerHTML = `(${amount})`;
   })
 }
-
 //count amount by screen size
 function filterByScreenSize(screenSize, originalData) {
   screenSize.forEach(size => {
@@ -161,8 +161,6 @@ function filterBySsdSize(ssdSize, originalData) {
     el.innerHTML = `(${amount})`;
   })
 }
-
-
 
 
 //sorting products by price and name
