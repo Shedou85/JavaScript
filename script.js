@@ -9,7 +9,7 @@ const producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"
 const processorList = ["AMD", "Intel", "AppleM1", "AppleM2"];
 const screenSizeList = [13, 13.3, 14, 15.6, 16, 17.3];
 const ramSizeList = [4, 8, 16, 32, 64];
-let ssdSizeList = ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB"];
+const ssdSizeList = ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB"];
 
 //Products Api Fetch
 async function cardApi() {
@@ -150,13 +150,15 @@ function filterByRamSize(ramSize, originalData) {
 }
 //count amount by ssd size
 function filterBySsdSize(ssdSize, originalData) {
-  ssdSize.forEach(sizes => {
+  ssdSize.forEach(size => {
     let amount = 0;
     originalData.forEach(product => {
-      if (product.specs.ssd === sizes) amount++
+      if (product.specs.ssd === size) amount++
+      console.log(product.specs.ssd) //pochemu on tak bezobrazno shitajet?
       
     })
-    let el = document.querySelector(`[data-ssdSize="${sizes}"]`)
+    let el = document.querySelector(`[data-ssdSize="${size}"]`)
+    //console.log(el)
     el.innerHTML = `(${amount})`;
   })
 }
