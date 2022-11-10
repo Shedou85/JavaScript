@@ -10,6 +10,7 @@ const processorList = ["AMD", "Intel", "AppleM1", "AppleM2"];
 const screenSizeList = [13, 13.3, 14, 15.6, 16, 17.3];
 const ramSizeList = [4, 8, 16, 32, 64];
 const ssdSizeList = ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB"];
+const priceList = ["448,00", "530,00", "575,00", "644,00", "702,00", "1019,00", "1192,00", "1402,00", "1502,00"]
 
 //Products Api Fetch
 async function cardApi() {
@@ -17,8 +18,9 @@ async function cardApi() {
   let dataResp = await res.json()
   let data = dataResp[0].data
   console.log(data);
-
+  
   originalData = data;
+  //console.log(data.map(item => item.price));
   render(data, wrapper);
   
   filterByProducerName(producerList, originalData);
@@ -26,6 +28,7 @@ async function cardApi() {
   filterByScreenSize(screenSizeList, originalData);
   filterByRamSize(ramSizeList, originalData);
   filterBySsdSize(ssdSizeList, originalData);
+  filterByPrice(priceList, originalData);
 }
 cardApi();  
 
@@ -161,6 +164,22 @@ function filterBySsdSize(ssdSize, originalData) {
     el.innerHTML = `(${amount})`;
   })
 }
+//count amount by price
+function filterByPrice(kaina, originalData) {
+  kaina.forEach(price => {
+    let amount = 0;
+    //console.log(price)
+    originalData.forEach(product => {
+
+      if (product.price == price) amount++
+      console.log(product.price)
+    })
+    
+    let el = document.querySelector(`[data-price="${price}"]`)
+
+    el.innerHTML = `(${amount})`;
+  })
+}
 
 
 //sorting products by price and name
@@ -223,8 +242,51 @@ input2.addEventListener("input", (e) => {
 });
 
 
+//Check boxes for Price filter
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("price-check")) {
+    let elPrice = e.target.dataset.price
 
+    switch (elPrice) {
+      case '600/':
+        console.log('Less than 600')
+        break;
+      case'600/750':
+        console.log('More then 600 and less then 750')
+        break;
+      case'750/900':
+        console.log('More then 750 and less then 900')
+        break;
+      case'900/1100':
+        console.log('More then 900 and less then 1100')
+        break;
+      case'1100/1220':
+        console.log('More then 1100 and less then 1220')
+        break;
+      case'1220/1500':  
+        console.log('More then 1220 and less then 1500')
+        break;
+      case'1500/1800':
+        console.log('More than 1500 and les then 1800')
+        break;
+      case'1800/2200':
+        console.log('More than 1800 and les than 2200')
+        break;
+      case'2200/3000':
+        console.log('More than 2200 and les than 3000')
+        break;
+      case'3000/':
+        console.log('More than 3000')
+        break;
+    }
+    
+    let checkboxes = document.querySelectorAll(".price-check");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== e.target) checkbox.checked = false;
+    });
 
+  }
+})
 
 
 
