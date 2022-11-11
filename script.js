@@ -11,6 +11,8 @@ const screenSizeList = [13, 13.3, 14, 15.6, 16, 17.3];
 const ramSizeList = [4, 8, 16, 32, 64];
 const ssdSizeList = ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB"];
 const priceList = ["448,00", "530,00", "575,00", "644,00", "702,00", "1019,00", "1192,00", "1402,00", "1502,00"]
+const priceRange = [];
+let priceListRange = [];
 
 //Products Api Fetch
 async function cardApi() {
@@ -20,19 +22,102 @@ async function cardApi() {
   console.log(data);
   
   originalData = data;
-  //console.log(data.map(item => item.price));
   render(data, wrapper);
+  
   
   filterByProducerName(producerList, originalData);
   filterByProcessorName(processorList, originalData);
   filterByScreenSize(screenSizeList, originalData);
   filterByRamSize(ramSizeList, originalData);
   filterBySsdSize(ssdSizeList, originalData);
-  filterByPrice(priceList, originalData);
+  priceCounter();
+  //console.log(priceRange);
+  //filterByPrice(priceList, priceRange)
+  countSamePriceValues(priceRange)
 }
 cardApi();  
 
 
+function priceCounter () {
+  originalData.forEach(item => {
+    let price = Number(item.price.replace(",", "."));
+    priceRange.push(price);
+  })
+  }
+
+//count same price values in priceRange
+function countSamePriceValues(priceRange) {
+  let count = 0;
+  priceRange.forEach(price => {
+    if (price < 600) count++
+    //console.log(count);
+    let el = document.querySelector(`[data-priceRange="below600"]`)
+    el.innerHTML = `(${count})`;
+  })
+  let count2 = 0;
+  priceRange.forEach(price => {
+    if (price > 600 && price < 750) count2++
+    //console.log(count2);
+    let el1 = document.querySelector(`[data-priceRange="below750"]`)
+    el1.innerHTML = `(${count2})`;
+  })
+  let count3 = 0;
+  priceRange.forEach(price => {
+    if (price >= 750 && price <= 900) count3++
+    //console.log(count3);
+    let el2 = document.querySelector(`[data-priceRange="below900"]`)
+    el2.innerHTML = `(${count3})`;
+  })
+  let count4 = 0;
+  priceRange.forEach(price => {
+    if (price > 900 && price < 1100) count4++
+    //console.log(count4);
+    let el3 = document.querySelector(`[data-priceRange="below1100"]`)
+    el3.innerHTML = `(${count4})`;
+  })
+  let count5 = 0;
+  priceRange.forEach(price => {
+    if (price >= 1100 && price <= 1220) count5++
+    //console.log(count5);
+    let el4 = document.querySelector(`[data-priceRange="below1220"]`)
+    el4.innerHTML = `(${count5})`;
+  })
+  let count6 = 0;
+  priceRange.forEach(price => {
+    if (price > 1220 && price < 1500) count6++
+    //console.log(count6);
+    let el5 = document.querySelector(`[data-priceRange="below1500"]`)
+    el5.innerHTML = `(${count6})`;
+  })
+  let count7 = 0;
+  priceRange.forEach(price => {
+    if (price >= 1500 && price <= 1800) count7++
+    //console.log(count7);
+    let el6 = document.querySelector(`[data-priceRange="below1800"]`)
+    el6.innerHTML = `(${count7})`;
+  })
+  let count8 = 0;
+  priceRange.forEach(price => {
+    if (price > 1800 && price < 2200) count8++
+    //console.log(count8);
+    let el7 = document.querySelector(`[data-priceRange="below2200"]`)
+    el7.innerHTML = `(${count8})`;
+  })
+  let count9 = 0;
+  priceRange.forEach(price => {
+    if (price >= 2200 && price <= 3000) count9++
+    //console.log(count9);
+    let el8 = document.querySelector(`[data-priceRange="below3000"]`)
+    el8.innerHTML = `(${count9})`;
+  })
+  let count10 = 0;
+  priceRange.forEach(price => {
+    if (price > 3000) count10++
+    //console.log(count10);
+    let el9 = document.querySelector(`[data-priceRange="above3000"]`)
+    el9.innerHTML = `(${count10})`;
+  })
+}
 
 //Render Function 
 function render(data, wrapper) { 
@@ -164,22 +249,7 @@ function filterBySsdSize(ssdSize, originalData) {
     el.innerHTML = `(${amount})`;
   })
 }
-//count amount by price
-function filterByPrice(kaina, originalData) {
-  kaina.forEach(price => {
-    let amount = 0;
-    //console.log(price)
-    originalData.forEach(product => {
 
-      if (product.price == price) amount++
-      console.log(product.price)
-    })
-    
-    let el = document.querySelector(`[data-price="${price}"]`)
-
-    el.innerHTML = `(${amount})`;
-  })
-}
 
 
 //sorting products by price and name
@@ -240,8 +310,6 @@ input2.addEventListener("input", (e) => {
   }
   console.log(e.target.value);
 });
-
-
 //Check boxes for Price filter
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("price-check")) {
