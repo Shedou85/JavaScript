@@ -34,12 +34,6 @@ async function cardApi() {
 cardApi();
 
 
-function priceCounter() {
-  originalData.forEach(item => {
-    let price = Number(item.price.replace(",", "."));
-    priceRange.push(price);
-  })
-}
 
 
 
@@ -245,6 +239,13 @@ function filterBySsdSize(ssdSize, originalData) {
     el.innerHTML = `(${amount})`;
   })
 }
+//price counter
+function priceCounter() {
+  originalData.forEach(item => {
+    let price = Number(item.price.replace(",", "."));
+    priceRange.push(price);
+  })
+}
 
 
 
@@ -252,7 +253,7 @@ function filterBySsdSize(ssdSize, originalData) {
 let input = document.querySelector(".sort-select");
 input.addEventListener("input", (e) => {
 
-  //sort price  by lover to higher
+  //sorting price  by lover to higher
   if (e.target.value === "price_asc") {
     let sortedData = originalData.sort((a, b) => {
       return parseFloat(a.price) < parseFloat(b.price) ? -1 : 1;
@@ -267,7 +268,7 @@ input.addEventListener("input", (e) => {
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
   }
-  //sort by name
+  //sorting by name
   if (e.target.value === "name") {
     let sortedData = originalData.sort((description) => {
       return description
@@ -277,19 +278,18 @@ input.addEventListener("input", (e) => {
   }
 });
 
-// Local storage
+// Saving info of sorting preferences to local storage
 let sortSelect = document.querySelector(".sort-select");
 sortSelect.addEventListener("change", (e) => {
   localStorage.setItem("sort", e.target.value);
 });
-
 let sort = localStorage.getItem("sort");
 if (sort) {
   sortSelect.value = sort;
   sortSelect.dispatchEvent(new Event("change"));
 }
 
-//sorting products by quantity on the page
+//sorting products by quantity 
 let input2 = document.querySelector(".sort-select2");
 input2.addEventListener("input", (e) => {
   if (e.target.value === "5") {
@@ -321,7 +321,7 @@ input2.addEventListener("input", (e) => {
 });
 
 
-//addventlistener for filter for ALL 
+//addventlistener for ALL Filers
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("price-check")) {
     let elPrice = e.target.dataset.price
@@ -406,6 +406,7 @@ document.addEventListener("click", (e) => {
         render(filteredData9, wrapper);
         break;
     }
+    //all check boxes is here 
     //checkbox for producer 
   } else if (e.target.classList.contains("producer-check")) {
     let elProducer = e.target.dataset.producer
@@ -573,42 +574,3 @@ document.addEventListener("click", (e) => {
     render(originalData, wrapper);
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
