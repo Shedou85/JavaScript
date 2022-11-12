@@ -3,7 +3,7 @@
 let url = 'https://635d0154cb6cf98e56aa96bd.mockapi.io/productCards'
 let originalData;
 //Render card
-const wrapper  = document.querySelector(".cards-list");
+const wrapper = document.querySelector(".cards-list");
 //filters Options
 const producerList = ["TOSHIBA", "APPLE", "HP", "ACER", "ASUS", "LENOVO", "DELL"];
 const processorList = ["AMD", "Intel", "AppleM1", "AppleM2"];
@@ -12,7 +12,6 @@ const ramSizeList = [4, 8, 16, 32, 64];
 const ssdSizeList = ["128GB", "256GB", "512GB", "1TB", "2TB", "4TB"];
 const priceList = ["448,00", "530,00", "575,00", "644,00", "702,00", "1019,00", "1192,00", "1402,00", "1502,00"]
 const priceRange = [];
-let priceListRange = [];
 
 //Products Api Fetch
 async function cardApi() {
@@ -20,38 +19,35 @@ async function cardApi() {
   let dataResp = await res.json()
   let data = dataResp[0].data
   console.log(data);
-  
   originalData = data;
   render(data, wrapper);
-  
-  
+
+
   filterByProducerName(producerList, originalData);
   filterByProcessorName(processorList, originalData);
   filterByScreenSize(screenSizeList, originalData);
   filterByRamSize(ramSizeList, originalData);
   filterBySsdSize(ssdSizeList, originalData);
   priceCounter();
-  //console.log(priceRange);
-  //filterByPrice(priceList, priceRange)
   countSamePriceValues(priceRange)
 }
-cardApi();  
+cardApi();
 
 
-function priceCounter () {
+function priceCounter() {
   originalData.forEach(item => {
     let price = Number(item.price.replace(",", "."));
     priceRange.push(price);
   })
-  }
+}
 
 
 
 //Render Function 
-function render(data, wrapper) { 
-  data.forEach(card => { 
-    let cardElement = document.createElement("div"); 
-    cardElement.classList.add("product-card"); 
+function render(data, wrapper) {
+  data.forEach(card => {
+    let cardElement = document.createElement("div");
+    cardElement.classList.add("product-card");
     cardElement.innerHTML = ` 
      
       <div class="product-image"> 
@@ -104,9 +100,9 @@ function render(data, wrapper) {
    
       <div class="e-price ${card.ePrice ? 'show' : ''}">E-kaina</div> 
       <div class="shop-price">Tik Topocentras.lt</div> 
-    `; 
-    wrapper.append(cardElement); 
-  }); 
+    `;
+    wrapper.append(cardElement);
+  });
 }
 //count same price values in priceRange
 function countSamePriceValues(priceRange) {
@@ -189,9 +185,9 @@ function filterByProducerName(filterList, originalData) {
     originalData.forEach(product => {
       if (product.producer === prod) amount++
     })
-    
+
     let el = document.querySelector(`.${prod}.result-amount`)
-    
+
     el.innerHTML = `(${amount})`;
   })
 };
@@ -199,13 +195,13 @@ function filterByProducerName(filterList, originalData) {
 function filterByProcessorName(processors, originalData) {
   processors.forEach(proc => {
     let amount = 0;
-    
+
     originalData.forEach(product => {
       if (product.processor === proc) amount++
     })
-    
+
     let el = document.querySelector(`.${proc}.result-amount`)
-    
+
     el.innerHTML = `(${amount})`;
   })
 }
@@ -216,10 +212,10 @@ function filterByScreenSize(screenSize, originalData) {
 
     originalData.forEach(product => {
       if (product.specs.screenSizeValue === size) amount++
-      
+
     })
     let el = document.querySelector(`[data-screenSize="${size}"]`)
-    
+
     el.innerHTML = `(${amount})`;
   })
 }
@@ -245,7 +241,7 @@ function filterBySsdSize(ssdSize, originalData) {
 
     })
     let el = document.querySelector(`[data-ssdSize="${size}"]`)
-    
+
     el.innerHTML = `(${amount})`;
   })
 }
@@ -259,14 +255,14 @@ input.addEventListener("input", (e) => {
   //sort price  by lover to higher
   if (e.target.value === "price_asc") {
     let sortedData = originalData.sort((a, b) => {
-      return  parseFloat(a.price) < parseFloat(b.price) ? -1 : 1;
+      return parseFloat(a.price) < parseFloat(b.price) ? -1 : 1;
     });
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
   }
   if (e.target.value === "price_desc") {
     let sortedData = originalData.sort((a, b) => {
-      return  parseFloat(a.price) > parseFloat(b.price) ? -1 : 1;
+      return parseFloat(a.price) > parseFloat(b.price) ? -1 : 1;
     });
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
@@ -274,12 +270,25 @@ input.addEventListener("input", (e) => {
   //sort by name
   if (e.target.value === "name") {
     let sortedData = originalData.sort((description) => {
-      return  description
+      return description
     });
     wrapper.innerHTML = "";
     render(sortedData, wrapper);
   }
 });
+
+// Local storage
+let sortSelect = document.querySelector(".sort-select");
+sortSelect.addEventListener("change", (e) => {
+  localStorage.setItem("sort", e.target.value);
+});
+
+let sort = localStorage.getItem("sort");
+if (sort) {
+  sortSelect.value = sort;
+  sortSelect.dispatchEvent(new Event("change"));
+}
+
 //sorting products by quantity on the page
 let input2 = document.querySelector(".sort-select2");
 input2.addEventListener("input", (e) => {
@@ -310,51 +319,263 @@ input2.addEventListener("input", (e) => {
   }
   console.log(e.target.value);
 });
-//Check boxes for Price filter
+
+
+//addventlistener for filter for ALL 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("price-check")) {
     let elPrice = e.target.dataset.price
-
     switch (elPrice) {
       case '600/':
-        console.log('Less than 600')
+        let filteredData = originalData.filter(product => {
+          return parseFloat(product.price) < 600
+        })
+        wrapper.innerHTML = "";
+        render(filteredData, wrapper);
         break;
-      case'600/750':
-        console.log('More then 600 and less then 750')
+
+      case '600/750':
+        let filteredData1 = originalData.filter(product => {
+          return parseFloat(product.price) >= 600 && parseFloat(product.price) <= 750
+        })
+        wrapper.innerHTML = "";
+        render(filteredData1, wrapper);
         break;
-      case'750/900':
-        console.log('More then 750 and less then 900')
+
+      case '750/900':
+        let filteredData2 = originalData.filter(product => {
+          return parseFloat(product.price) >= 752 && parseFloat(product.price) <= 900
+        })
+        wrapper.innerHTML = "";
+        render(filteredData2, wrapper);
         break;
-      case'900/1100':
-        console.log('More then 900 and less then 1100')
+
+      case '900/1100':
+        let filteredData3 = originalData.filter(product => {
+          return parseFloat(product.price) >= 900 && parseFloat(product.price) <= 1100
+        })
+        wrapper.innerHTML = "";
+        render(filteredData3, wrapper);
         break;
-      case'1100/1220':
-        console.log('More then 1100 and less then 1220')
+
+      case '1100/1220':
+        let filteredData4 = originalData.filter(product => {
+          return parseFloat(product.price) >= 1100 && parseFloat(product.price) <= 1220
+        })
+        wrapper.innerHTML = "";
+        render(filteredData4, wrapper);
         break;
-      case'1220/1500':  
-        console.log('More then 1220 and less then 1500')
+
+      case '1220/1500':
+        let filteredData5 = originalData.filter(product => {
+          return parseFloat(product.price) >= 1220 && parseFloat(product.price) <= 1500
+        })
+        wrapper.innerHTML = "";
+        render(filteredData5, wrapper);
         break;
-      case'1500/1800':
-        console.log('More than 1500 and les then 1800')
+
+      case '1500/1800':
+        let filteredData6 = originalData.filter(product => {
+          return parseFloat(product.price) >= 1500 && parseFloat(product.price) <= 1800
+        })
+        wrapper.innerHTML = "";
+        render(filteredData6, wrapper);
         break;
-      case'1800/2200':
-        console.log('More than 1800 and les than 2200')
+
+      case '1800/2200':
+        let filteredData7 = originalData.filter(product => {
+          return parseFloat(product.price) >= 1800 && parseFloat(product.price) <= 2200
+        })
+        wrapper.innerHTML = "";
+        render(filteredData7, wrapper);
         break;
-      case'2200/3000':
-        console.log('More than 2200 and les than 3000')
+
+      case '2200/3000':
+        let filteredData8 = originalData.filter(product => {
+          return parseFloat(product.price) >= 2200 && parseFloat(product.price) <= 3000
+        })
+        wrapper.innerHTML = "";
+        render(filteredData8, wrapper);
         break;
-      case'3000/':
-        console.log('More than 3000')
+
+      case '3000/':
+        let filteredData9 = originalData.filter(product => {
+          return parseFloat(product.price) >= 3000
+        })
+        wrapper.innerHTML = "";
+        render(filteredData9, wrapper);
         break;
     }
-    
+    //checkbox for producer 
+  } else if (e.target.classList.contains("producer-check")) {
+    let elProducer = e.target.dataset.producer
+
+    switch (elProducer) {
+      case 'toshiba':
+
+        let filteredData = originalData.filter(product => {
+          return product.producer === 'TOSHIBA'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData, wrapper);
+        console.log('Toshiba is checeked')
+        break;
+    }
+    //checkbox for processor 
+  } else if (e.target.classList.contains("processor-check")) {
+    let elProcessor = e.target.dataset.processor
+    console.log(elProcessor)
+    switch (elProcessor) {
+      case 'AMD':
+
+        let filteredData = originalData.filter(product => {
+          return product.processor === 'AMD'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData, wrapper);
+        console.log('AMD is checeked')
+        break;
+      case 'Intel':
+
+        let filteredDataIntel = originalData.filter(product => {
+          return product.processor === 'Intel'
+        })
+        wrapper.innerHTML = "";
+        render(filteredDataIntel, wrapper);
+        console.log('Intel is checeked')
+        break;
+
+      case 'AppleM1':
+
+        let filteredDataAppleM1 = originalData.filter(product => {
+          return product.processor === 'Apple M1'
+        })
+        wrapper.innerHTML = "";
+        render(filteredDataAppleM1, wrapper);
+        console.log('Apple M1 is checeked')
+        break;
+
+      case 'AppleM2':
+
+        let filteredDataAppleM2 = originalData.filter(product => {
+          return product.processor === 'Apple M2'
+        })
+        wrapper.innerHTML = "";
+        render(filteredDataAppleM2, wrapper);
+        console.log('Apple M2 is checeked')
+        break;
+
+    }
+    //checkbox for screen size 
+  } else if (e.target.classList.contains("screen-check")) {
+
+    let elScreen = e.target.dataset.screen
+
+    switch (elScreen) {
+      case '13':
+
+        let filteredData = originalData.filter(product => {
+          return product.specs.screenSizeValue === '13'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData, wrapper);
+        console.log('13 is checeked')
+        break;
+
+    }
+    // checkbox for ram 
+  } else if (e.target.classList.contains("ram-check")) {
+    let elRam = e.target.dataset.ram
+
+    switch (elRam) {
+      case '4':
+
+        let filteredData = originalData.filter(product => {
+          return product.specs.ram === '4'
+
+        })
+        wrapper.innerHTML = "";
+        render(filteredData, wrapper);
+        console.log('4 is checeked')
+        break;
+
+    }
+    // checkbox for storage 
+  } else if (e.target.classList.contains("ssd-check")) {
+    let elStorage = e.target.dataset.ssd
+    console.log(elStorage)
+    switch (elStorage) {
+      case '128':
+
+        let filteredData = originalData.filter(product => {
+          return product.specs.storage === '128'
+
+        })
+        wrapper.innerHTML = "";
+        render(filteredData, wrapper);
+        console.log('128 is checeked')
+        break;
+
+    }
+  }
+
+  //uncheking checkboxes
+  if (e.target.classList.contains("price-check")) {
     let checkboxes = document.querySelectorAll(".price-check");
     checkboxes.forEach((checkbox) => {
-      if (checkbox !== e.target) checkbox.checked = false;
+      if (checkbox !== e.target) {
+        checkbox.checked = false;
+      }
     });
-
+  }
+  if (e.target.classList.contains("producer-check")) {
+    let checkboxes = document.querySelectorAll(".producer-check");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== e.target) {
+        checkbox.checked = false;
+      }
+    });
+  }
+  if (e.target.classList.contains("processor-check")) {
+    let checkboxes = document.querySelectorAll(".processor-check");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== e.target) {
+        checkbox.checked = false;
+      }
+    });
+  }
+  if (e.target.classList.contains("ram-check")) {
+    let checkboxes = document.querySelectorAll(".ram-check");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== e.target) {
+        checkbox.checked = false;
+      }
+    });
+  }
+  if (e.target.classList.contains("ssd-check")) {
+    let checkboxes = document.querySelectorAll(".ssd-check");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== e.target) {
+        checkbox.checked = false;
+      }
+    });
+  }
+  if (e.target.classList.contains("screen-check")) {
+    let checkboxes = document.querySelectorAll(".screen-check");
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== e.target) {
+        checkbox.checked = false;
+      }
+    });
+  }
+  if (e.target.classList.contains("price-check") && !e.target.checked) {
+    wrapper.innerHTML = "";
+    render(originalData, wrapper);
   }
 })
+
+
+
 
 
 
