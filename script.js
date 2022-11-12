@@ -574,3 +574,10 @@ document.addEventListener("click", (e) => {
     render(originalData, wrapper);
   }
 })
+
+//targeting heart svg
+wrapper.addEventListener('click', (e) => {
+  if (e.target.classList.contains('favourite-button')) {
+    console.log('favourite button is clicked')
+  }
+})
