@@ -425,7 +425,7 @@ document.addEventListener("click", (e) => {
     //checkbox for processor 
   } else if (e.target.classList.contains("processor-check")) {
     let elProcessor = e.target.dataset.processor
-    console.log(elProcessor)
+    
     switch (elProcessor) {
       case 'AMD':
 
@@ -434,7 +434,6 @@ document.addEventListener("click", (e) => {
         })
         wrapper.innerHTML = "";
         render(filteredData, wrapper);
-        console.log('AMD is checeked')
         break;
       case 'Intel':
 
@@ -443,7 +442,6 @@ document.addEventListener("click", (e) => {
         })
         wrapper.innerHTML = "";
         render(filteredDataIntel, wrapper);
-        console.log('Intel is checeked')
         break;
 
       case 'AppleM1':
@@ -453,7 +451,6 @@ document.addEventListener("click", (e) => {
         })
         wrapper.innerHTML = "";
         render(filteredDataAppleM1, wrapper);
-        console.log('Apple M1 is checeked')
         break;
 
       case 'AppleM2':
@@ -463,7 +460,6 @@ document.addEventListener("click", (e) => {
         })
         wrapper.innerHTML = "";
         render(filteredDataAppleM2, wrapper);
-        console.log('Apple M2 is checeked')
         break;
 
     }
@@ -476,30 +472,106 @@ document.addEventListener("click", (e) => {
       case '13':
 
         let filteredData = originalData.filter(product => {
-          return product.specs.screenSizeValue === '13'
+          return product.specs.screenSizeValue == '13'
         })
         wrapper.innerHTML = "";
         render(filteredData, wrapper);
-        console.log('13 is checeked')
-        console.log(filteredData) // pochemu vozvrashaet pustoy massiv???
+        break;
+
+      case '13.3':
+
+        let filteredData1 = originalData.filter(product => {
+          return product.specs.screenSizeValue == '13.3'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData1, wrapper);
+        break;
+
+      case '14':
+
+        let filteredData2 = originalData.filter(product => {
+          return product.specs.screenSizeValue == '14'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData2, wrapper);
+        break;
+
+      case '15.6':
+
+        let filteredData3 = originalData.filter(product => {
+          return product.specs.screenSizeValue == '15.6'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData3, wrapper);
+        break; 
+        
+      case '16':
+
+        let filteredData4 = originalData.filter(product => {
+          return product.specs.screenSizeValue == '16'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData4, wrapper);
+        break; 
+        
+      case '17.3':
+
+        let filteredData5 = originalData.filter(product => {
+          return product.specs.screenSizeValue == '17.3'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData5, wrapper);
         break;
 
     }
     // checkbox for ram 
   } else if (e.target.classList.contains("ram-check")) {
     let elRam = e.target.dataset.ram
-    
     switch (elRam) {
       case '4':
-
+        
         let filteredData = originalData.filter(product => {
-          return product.specs.ram === '4'
-          
+          return product.specs.ram == '4'
         })
         wrapper.innerHTML = "";
         render(filteredData, wrapper);
-        console.log('4 is checeked')
-        console.log(filteredData) // pochemu vozvrashaet pustoy massiv???
+        console.log('4GB is checeked')
+        break;
+
+      case '8':
+        
+        let filteredData1 = originalData.filter(product => {
+          return product.specs.ram == '8'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData1, wrapper);
+        break;
+
+      case '16':
+
+        let filteredData2 = originalData.filter(product => {
+          return product.specs.ram == '16'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData2, wrapper);
+        break;
+
+      case '32':
+
+        let filteredData3 = originalData.filter(product => {
+          return product.specs.ram == '32'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData3, wrapper);
+        break;
+
+      case '64':
+
+        let filteredData4 = originalData.filter(product => {
+          return product.specs.ram == '64'
+        })
+        wrapper.innerHTML = "";
+        render(filteredData4, wrapper);
         break;
 
     }
@@ -508,19 +580,65 @@ document.addEventListener("click", (e) => {
     let elStorage = e.target.dataset.ssd
     
     switch (elStorage) {
-      case '128':
+      case '128GB':
 
         let filteredData = originalData.filter(product => {
-          return product.specs.storage === '128'
+          return product.specs.ssd === '128GB'
 
         })
         wrapper.innerHTML = "";
-        render(filteredData, wrapper);
-        console.log('128 is checeked')
-        console.log(filteredData) // pochemu vozvrashaet pustoy massiv???
-
+        render(filteredData, wrapper); 
         break;
 
+      case '256GB':
+
+        let filteredData1 = originalData.filter(product => {
+          return product.specs.ssd === '256GB'
+
+        })
+        wrapper.innerHTML = "";
+        render(filteredData1, wrapper);
+        break;
+
+      case '512GB':
+
+        let filteredData2 = originalData.filter(product => {
+          return product.specs.ssd === '512GB'
+  
+        })
+        wrapper.innerHTML = "";
+        render(filteredData2, wrapper);
+        break;  
+
+      case '1TB':
+
+        let filteredData3 = originalData.filter(product => {
+          return product.specs.ssd === '1TB'
+    
+        })
+        wrapper.innerHTML = "";
+        render(filteredData3, wrapper);
+        break;
+
+      case '2TB':
+
+        let filteredData4 = originalData.filter(product => {
+          return product.specs.ssd === '2TB'
+      
+        })
+        wrapper.innerHTML = "";
+        render(filteredData4, wrapper);
+        break;
+
+      case '4TB':
+
+        let filteredData5 = originalData.filter(product => {
+          return product.specs.ssd === '4TB'
+        
+        })
+        wrapper.innerHTML = "";
+        render(filteredData5, wrapper);
+        break;
     }
   }
 
@@ -573,7 +691,28 @@ document.addEventListener("click", (e) => {
       }
     });
   }
+  // if checkbox is uncheked
   if (e.target.classList.contains("price-check") && !e.target.checked) {
+    wrapper.innerHTML = "";
+    render(originalData, wrapper);
+  }
+  if (e.target.classList.contains("producer-check") && !e.target.checked) {
+    wrapper.innerHTML = "";
+    render(originalData, wrapper);
+  }
+  if (e.target.classList.contains("processor-check") && !e.target.checked) {
+    wrapper.innerHTML = "";
+    render(originalData, wrapper);
+  }
+  if (e.target.classList.contains("ram-check") && !e.target.checked) {
+    wrapper.innerHTML = "";
+    render(originalData, wrapper);
+  }
+  if (e.target.classList.contains("ssd-check") && !e.target.checked) {
+    wrapper.innerHTML = "";
+    render(originalData, wrapper);
+  }
+  if (e.target.classList.contains("screen-check") && !e.target.checked) {
     wrapper.innerHTML = "";
     render(originalData, wrapper);
   }
