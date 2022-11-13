@@ -471,7 +471,7 @@ document.addEventListener("click", (e) => {
   } else if (e.target.classList.contains("screen-check")) {
 
     let elScreen = e.target.dataset.screen
-
+    
     switch (elScreen) {
       case '13':
 
@@ -481,30 +481,32 @@ document.addEventListener("click", (e) => {
         wrapper.innerHTML = "";
         render(filteredData, wrapper);
         console.log('13 is checeked')
+        console.log(filteredData) // pochemu vozvrashaet pustoy massiv???
         break;
 
     }
     // checkbox for ram 
   } else if (e.target.classList.contains("ram-check")) {
     let elRam = e.target.dataset.ram
-
+    
     switch (elRam) {
       case '4':
 
         let filteredData = originalData.filter(product => {
           return product.specs.ram === '4'
-
+          
         })
         wrapper.innerHTML = "";
         render(filteredData, wrapper);
         console.log('4 is checeked')
+        console.log(filteredData) // pochemu vozvrashaet pustoy massiv???
         break;
 
     }
     // checkbox for storage 
   } else if (e.target.classList.contains("ssd-check")) {
     let elStorage = e.target.dataset.ssd
-    console.log(elStorage)
+    
     switch (elStorage) {
       case '128':
 
@@ -515,6 +517,8 @@ document.addEventListener("click", (e) => {
         wrapper.innerHTML = "";
         render(filteredData, wrapper);
         console.log('128 is checeked')
+        console.log(filteredData) // pochemu vozvrashaet pustoy massiv???
+
         break;
 
     }
