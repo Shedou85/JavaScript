@@ -718,9 +718,9 @@ document.addEventListener("click", (e) => {
   }
 })
 
-//targeting heart svg
+
 wrapper.addEventListener('click', (e) => {
-  if (e.target.classList.contains('favourite-button')) {
+  if (e.target.classList.contains('to-cart-button')) {
     console.log('favourite button is clicked')
   }
 })
